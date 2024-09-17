@@ -1,0 +1,27 @@
+//LHAMAAAAS - https://cs50.harvard.edu/x/2023/labs/1/
+
+#include <stdio.h>
+
+void calc(int startSize, int endSize);
+int main(void){
+    int startSize, endSize;
+    printf("start size: ");
+    scanf("%d", &startSize);
+    printf("end size: ");
+    scanf("%d", &endSize);
+    calc(startSize, endSize);
+}
+
+void calc(int startSize, int endSize){
+    int lhamasNasc; int lhamasMortes; int lhamasNovas;
+    int totalLhamas = startSize;
+    int totalYears = 0;
+    while(totalLhamas < endSize){
+        lhamasNasc = totalLhamas / 3;
+        lhamasMortes = totalLhamas / 4;
+        lhamasNovas = lhamasNasc - lhamasMortes;
+        totalLhamas += lhamasNovas;
+        printf("Ano #%d: nasc: %d - mortes: %d - total: %d\n", ++totalYears, lhamasNasc, lhamasMortes, totalLhamas);
+    }
+    printf("iria levar %d anos!", totalYears);
+}
