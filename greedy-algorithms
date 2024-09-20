@@ -1,0 +1,35 @@
+https://cs50.harvard.edu/x/2023/psets/1/cash/#greedy-algorithms
+
+#include <stdio.h>
+void processor(double troco);
+ int main(void){
+    double valorDaContaInput; double valorPagoInput; double troco;
+
+    printf("valor da conta:");
+    scanf("%lf", &valorDaContaInput);
+    printf("valor pago:");
+    scanf("%lf", &valorPagoInput);
+    troco = valorPagoInput * 100 - valorDaContaInput * 100;
+    processor(troco);
+}
+
+void processor(double troco){
+    int quantMoeda;
+    int arrValores[] = {5000,2000,1000,500,200,100,50,25,10,5,1};
+    int arrContador = 0;
+    int trocoInt = troco;
+
+    printf("\n================ Valor do troco: %.2f ================\n", troco / 100);
+    while(trocoInt > 0){
+        if(trocoInt >= arrValores[arrContador]){
+            quantMoeda = trocoInt / arrValores[arrContador];
+            trocoInt = trocoInt % arrValores[arrContador];
+            if(quantMoeda > 0){
+                printf("\ndevolva %d nota(s) ou moeda(s) de %.2f", quantMoeda,
+                       arrValores[arrContador] / (double) 100);
+            }
+        }
+         ++arrContador;
+    }
+    printf("\nFIM\n");
+}
