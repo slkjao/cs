@@ -1,0 +1,72 @@
+void extrator (long long int number);
+void mathematicalCheck(int digitos[]);
+
+int main(void){
+    long long int number;
+    printf("NUMBER: ");
+    scanf("%lld", &number);
+    extrator(number);
+}
+
+void extrator(long long int number){
+    int contador = 0;
+    int digitos[16];
+
+    while(number != 0){
+        digitos[contador] = number % 10;
+        number /= 10;
+        contador++;
+    }
+
+    int primeiroDigito = digitos[sizeof(digitos)/sizeof(digitos[0]) - 1];
+    int segundoDigito = digitos[sizeof(digitos)/sizeof(digitos[0]) - 2];
+
+    //Digito tem que ser baseado no contador!
+
+    printf("%d --- %d\n", primeiroDigito, segundoDigito);
+
+    if(contador != 13 && contador != 15 && contador != 16){
+        printf("invalid");
+    }
+        else if(primeiroDigito == 3){
+            if(segundoDigito == 4 || segundoDigito == 7){
+                mathematicalCheck(digitos);
+            }
+        }
+        else if(primeiroDigito == 5){
+            if(segundoDigito >= 1 || segundoDigito <= 5){
+                mathematicalCheck(digitos);
+            }
+        }
+        else if(primeiroDigito == 4){
+            mathematicalCheck(digitos);
+        }
+        else {
+            printf("invalid");
+        }
+}
+
+void mathematicalCheck(int digitos[]){
+
+    int sumOfDigits = 0;
+    for(int i = 15; i >= 0; i--){
+        printf("%d", digitos[i]);
+        if(i % 2 == 1){
+            int produto = digitos[i] * 2;
+            if(produto >= 10){
+                sumOfDigits += (produto % 10) + (produto / 10);
+            } else {
+                sumOfDigits += produto;
+            }
+        } else {
+            sumOfDigits += digitos[i];
+        }
+    }
+
+    printf("\nsoma total = %d \n", sumOfDigits);
+    if(sumOfDigits % 10 == 0){
+        printf("Valid!");
+    } else {
+        printf("Invalid!");
+    }
+}
