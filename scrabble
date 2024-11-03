@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void){
+
+ int array[2][26] = {
+    {
+      1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10
+    }
+ };
+
+ for (int j = 0; j < 26; j++){
+    array[1][j] = j + 65;
+ }
+
+    char word1[50];
+    char word2[50];
+    int word1Points = 0;
+    int word2Points = 0;
+
+    printf("\nPrimeira palavra:\n");
+    scanf("%s", word1);
+
+    printf("Segunda palavra:\n");
+    scanf("%s", word2);
+
+    for(int i = 0; word1[i] != '\0'; i++){
+        word1[i] = toupper(word1[i]);
+        if(word1[i] >= 65 && word1[i] <= 90){
+            word1Points += array[0][word1[i] - 65];
+        }
+    }
+
+    for(int i = 0; word2[i] != '\0'; i++){
+        word2[i] = toupper(word2[i]);
+        if(word2[i] >= 65 && word2[i] <= 90){
+            word2Points += array[0][word2[i] - 65];
+        }
+    }
+
+    if(word1Points > word2Points){
+        printf("Jogador 1 Venceu!");
+    } else if (word1Points < word2Points){
+        printf("Jogador 2 Venceu!");
+    } else {
+        printf("Deu empate meu parceiro!");
+    }
+
+}
+
+
+
