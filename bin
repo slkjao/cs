@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+void decimalConvert(char input);
+
+int main(void){
+    char input[50];
+    printf("input:");
+    fgets(input, sizeof(input), stdin);
+    printf("input: %s", input);
+    for(int i = 0; i < strlen(input) - 1; i++){
+        decimalConvert(input[i]);
+        printf("\n");
+    }
+}
+
+void decimalConvert(char input){
+
+    int arrayBinario[8];
+    int contadorArray = 7;
+    int valor = input;
+
+    printf("letra: %c - valor ascii: %d - valor binario: ", input,input);
+
+    while(valor > 0){
+        arrayBinario[contadorArray] = valor % 2;
+        contadorArray--;
+        valor /= 2;
+    }
+
+    for(int i = 0; i < 8; i++){
+        int bin = arrayBinario[i];
+        if(bin == 0 || bin == 1){
+            printf("%d", bin);
+        }
+    }
+}
+
+
+
